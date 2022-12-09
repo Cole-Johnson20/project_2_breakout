@@ -37,9 +37,8 @@ class GUI:
         try:
             if len(name) < 16:
                 player = [name, self.score]
-                with open('leaderboard.csv', 'a') as csvfile:
+                with open('leaderboard.csv', 'a+', newline='') as csvfile:
                     content = csv.writer(csvfile)
-                    csvfile.write('\n')
                     content.writerow(player)
                     self.label_response.config(text='Name Submitted')
                     self.screen.destroy()

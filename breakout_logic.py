@@ -72,6 +72,8 @@ def pause_game():
     paused = True
     while paused:
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_p:
                     paused = False
@@ -165,6 +167,7 @@ def add_leaderboard_entry(score):
     screen = Tk()
     screen.title('Input Name')
     screen.geometry('300x200')
+    screen.resizable(False, False)
     widgets = GUI(screen, score)
     screen.mainloop()
 
@@ -205,6 +208,7 @@ def get_highest_players(scores, players) -> list[list]:
     :return: List of the players with the 5 highest scores
     """
     high_score_players = []
+    top_scores.clear()
     temp_scores = scores
     temp_players = players
     for i in range(5):
